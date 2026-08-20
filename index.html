@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Labeeb Bootcamp Pro - 10 Workshops</title>
+    <link rel="stylesheet" href="./src/css/styles.css">
+</head>
+<body>
+    <h1 id="mainTitle" class="heading-title">🤖 Labeeb Bootcamp Pro</h1>
+
+    <main id="game-container">
+        <canvas id="gameCanvas" width="1000" height="550"></canvas>
+
+        <div id="in-game-ui" class="hidden">
+            <button id="pauseGameBtn" class="icon-btn">⏸️</button>
+            <button id="exitToHubBtn" class="icon-btn" style="border-color:#ff007f; color:#ff007f;">🏠</button>
+        </div>
+
+        <div id="nameScreen" class="overlay">
+            <h2 style="color: #00f0ff;">Welcome Hero! 🚀</h2>
+            <p>Enter your name to register on the Bootcamp Leaders Board:</p>
+            <input type="text" id="playerNameInput" placeholder="Enter Your Name..." maxlength="20">
+            <button id="saveNameBtn" class="btn">ENTER BOOTCAMP HUB ⚡</button>
+        </div>
+
+        <div id="hubScreen" class="overlay hidden">
+            <h2 style="color: #00f0ff;">🎓 Choose Your Workshop</h2>
+            <p>Select a standalone workshop or visit the Bootcamp Store:</p>
+
+            <div class="workshop-cards">
+                <div class="card" id="selectStage1"><div>📡</div><h4>WS 1</h4><p>IoT Hardware</p></div>
+                <div class="card" id="selectStage2"><div>🧠</div><h4>WS 2</h4><p>Deep Learning</p></div>
+                <div class="card" id="selectStage3"><div>🎬</div><h4>WS 3</h4><p>AI Video</p></div>
+                <div class="card" id="selectStage4"><div>🤖</div><h4>WS 4</h4><p>Robotics</p></div>
+                <div class="card" id="selectStage5"><div>🔌</div><h4>WS 5</h4><p>PCB Routing</p></div>
+                <div class="card" id="selectStage6"><div>⚙️</div><h4>WS 6</h4><p>PLC & Actuators</p></div>
+                <div class="card" id="selectStage7"><div>🛡️</div><h4>WS 7</h4><p>SOC</p></div>
+                <div class="card" id="selectStage8"><div>🐍</div><h4>WS 8</h4><p>Python</p></div>
+                <div class="card" id="selectStage9"><div>🖨️</div><h4>WS 9</h4><p>3D Printing</p></div>
+                <div class="card" id="selectStage10"><div>🔧</div><h4>WS 10</h4><p>Arduino</p></div>
+            </div>
+
+            <div class="store-area">
+                <button id="openStoreBtn" class="btn store-btn">🏪 STORE</button>
+            </div>
+        </div>
+
+        <div id="pauseScreen" class="overlay hidden">
+            <h2 style="color: #00f0ff;">⏸️ PAUSED</h2>
+            <button id="resumeGameBtn" class="btn">RESUME ▶️</button>
+            <button id="pauseHubBtn" class="btn secondary-btn">HUB 🏠</button>
+        </div>
+
+        <div id="trophyScreen" class="overlay hidden">
+            <h2 style="color: #ffea00;">🏆 MASTERED! 🏆</h2>
+            <div class="trophy-box">
+                <div class="trophy-icon">🏆</div>
+                <h3 id="trophyPlayerName">Player</h3>
+                <p id="trophyDesc">Mastered!</p>
+            </div>
+            <button id="nextStageBtn" class="btn next-btn">NEXT 🧠</button>
+            <button id="backToHubBtn1" class="btn secondary-btn">HUB 🏠</button>
+        </div>
+
+        <div id="shopScreen" class="overlay hidden">
+            <h2 style="color: #ffea00;">🏪 Store</h2>
+            <p>Balance: <b id="shopCoinsText" class="coins-text">0 🪙</b></p>
+            <div class="shop-actions">
+                <button id="buyLifeBtn" class="btn buy-btn">BUY LIFE ❤️ (5🪙)</button>
+                <button id="startMiniGameBtn" class="btn mini-btn">COIN CHALLENGE ⚡</button>
+            </div>
+            <button id="resumeMainBtn" class="btn secondary-btn">BACK 🎮</button>
+        </div>
+
+        <div id="endScreen" class="overlay hidden">
+            <h2 id="endTitle">CONGRATULATIONS!</h2>
+            <p id="endMessage">Bootcamp Finished!</p>
+            <button id="restartBtn" class="btn">RETRY 🔄</button>
+            <button id="backToHubBtn2" class="btn secondary-btn">HUB 🏠</button>
+        </div>
+    </main>
+
+    <section id="touch-controls-mobile" aria-label="Mobile game controls">
+        <div class="controls-row">
+            <div class="controls-group single-control">
+                <button id="mobileUp" class="touch-btn-mobile dpad">⬆</button>
+            </div>
+
+            <div class="controls-group">
+                <button id="mobileLeft" class="touch-btn-mobile dpad">⬅</button>
+                <button id="mobileDown" class="touch-btn-mobile dpad">⬇</button>
+                <button id="mobileRight" class="touch-btn-mobile dpad">➡</button>
+            </div>
+
+            <div class="controls-group single-control">
+                <button id="mobileJump" class="touch-btn-mobile action-btn">⬆<span>JUMP</span></button>
+            </div>
+        </div>
+
+        <div class="controls-row" id="mobileActionRow">
+            <button id="mobileActionA" class="touch-btn-mobile action-btn2">🔥 A</button>
+            <button id="mobileActionB" class="touch-btn-mobile action-btn3">🦠 B</button>
+            <button id="mobileActionC" class="touch-btn-mobile action-btn">📧 C</button>
+        </div>
+    </section>
+
+    <div id="touch-controls" class="hidden">
+        <div id="btnActuatorA" class="touch-btn">🔥 Protect (1)</div>
+        <div id="btnActuatorB" class="touch-btn btn-actuator-b">🦠 Scan (2)</div>
+        <div id="btnActuatorC" class="touch-btn btn-actuator-c">📧 Block (3)</div>
+    </div>
+
+    <footer>
+        <p>
+            <strong>Full-Stack Development &amp; Maintenance:</strong>
+            Eng. Obada Abbas
+        </p>
+        <p>
+            <strong>Frontend Development:</strong>
+            Eng. Wafa'a AL-Khalafat
+        </p>
+        <p>© 2026 Labeeb Bootcamp Pro. All Rights Reserved.</p>
+    </footer>
+
+    <script src="./levels/levels.js"></script>
+    <script src="./js/game.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
